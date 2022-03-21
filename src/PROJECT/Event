@@ -1,0 +1,31 @@
+
+import java.lang.Math;
+
+public abstract class Event {
+	
+	private String name = new String();
+	private String explain = new String();
+	private int numberRange;
+
+	public Event(String aName, String theExplain, int num) {
+		name = aName;
+		explain = theExplain;
+		numberRange = num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getExplain() {
+		return explain;
+	}
+	
+	public double getARandomNumber(int i) {
+		int num = 0 + (int)(Math.random() * (i+1));
+		return num;
+	}
+	
+	public abstract String passTheEvent(Player P);
+
+}

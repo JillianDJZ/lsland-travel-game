@@ -1,0 +1,20 @@
+public class SailorRescue extends Event{
+
+	public SailorRescue() {
+		super("Sailor Rescue", "Rescuing people who fall into the water will give you random rewards.", 200);
+	}
+	
+	@Override
+	public String passTheEvent(Player p) {
+		String result = new String();
+		int bonus = (int)getARandomNumber(200);
+		p.addBalance(bonus);
+		result = "On the voyage, you save the drowning person, win the prize!\n"
+				+ "Bonus is $" + bonus 
+				+ "It has been deposited into your account!"
+				+ "\nNow continue to complete the voyage!";;
+		return result;
+	}
+
+}
+

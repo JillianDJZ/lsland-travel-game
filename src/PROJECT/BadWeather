@@ -1,0 +1,20 @@
+public class BadWeather extends Event{
+
+	public BadWeather() {
+		super("Bad Weather", "It will cause damage to the ship.", 4);
+	}
+
+	@Override
+	public String passTheEvent(Player P) {
+		String result = new String();
+		int damageLeve = (int)getARandomNumber(4);
+		String[] condition = {"Perfect", "Little damage", "Damage", "Very Bad"};
+		String newConditon = condition[damageLeve];
+		P.getShipToCaptain().setShipCondition(newConditon);
+		result = "After this bad weather, your ship's condition is: " + newConditon +
+		"\nMake sure your boat is in perfect condition before you set sail!" + "\nNow continue to complete the voyage.";
+		return result;
+		
+		//bad weather has a -- damage to the ship
+	}
+}

@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Pirate extends Event {
+
+	public Pirate() {
+		super("Pirate", "Will take your goods and your money", 800);
+	}
+	
+	public ArrayList <Integer> creatARandomList(int length) {
+		ArrayList <Integer> randomList = new ArrayList <Integer>();
+		while(length > 0) {
+			randomList.add((int)getARandomNumber(4));
+			length --;
+		}
+		return randomList;
+	}
+	
+	public String getPiratesOnBoard (Player p, int num) {
+		ArrayList <Integer> successList = new ArrayList <Integer>();
+		for (Upgrade upgrade:p.getShipToCaptain().getUpgradeList()) {
+			if (upgrade.getName() == "Cannon") {
+				return "You fought off the pirates! Yeah!";
+				}
+			else {
+				if (upgrade.getName() == "Guns") {successList = creatARandomList(3);}
+				else {successList = creatARandomList(2);} }	
+		}
+		if (successList.contains(num)) {return  "You fought off the pirates! Yeah!";}
+		else {return "Not good!The pirates are aboard!";}
+	}
+	
+	
+	public boolean checkEnoughMoney(Player p, int moneyPirateWant) {
+		int moneyHave = 0;
+		moneyHave += p.getBalance();
+		for(Item i : p.getShipToCaptain().getCapicityItems()) {
+			moneyHave += i.getBuyingPrice();
+		}
+		return moneyPirateWant <= moneyHave;	
+	}
+	
+	
+
+	@Override
+	public String passTheEvent(Player p) {
+		int moneyPirateWant = (int)getARandomNumber(3000); 
+		String s1 = "They want " + moneyPirateWant + "gold bars.\n";
+		String s2 = new String();
+		p.setBalance(0);
+		p.getShipToCaptain().emptyCabin();
+		if(checkEnoughMoney(p, moneyPirateWant) == true) {
+			s2 = "Fortunately you had enough money. You were robbed of your money and goods.But you can sail on!";
+			}
+		else {
+			s2 = "I'm very sorry, but your cargo and money can't satisfy the pirates, and your ship has been taken. \nGame over!";
+			
+			}
+		return s1 + s2;
+	}
+	
+}
