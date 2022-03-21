@@ -1,3 +1,1 @@
-# SENG201-PROJECT
-
-SENG 201 Trading Game
+This is a ship trading game, implemented by GUI. Players can choose their favorite ship and drive it to trade among the five islands. Upgrade your ships by purchasing equipment. Occasional events will be encountered during the voyage, such as pirates, storms, etc. Accidental events may bring you losses or rewards.
